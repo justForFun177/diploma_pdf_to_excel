@@ -6,7 +6,7 @@ import pandas as pd
 
 HSC_SCIENCE_ID = 1
 DIPLOMA_ID = 2
-
+st.set_page_config(page_title="PDF to EXCEL")
 st.title("UPLOAD DIPLOMA RESULT PDF")
 
 class PdDataFrame:

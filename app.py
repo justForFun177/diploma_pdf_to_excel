@@ -165,5 +165,5 @@ try:
     
         # Use BytesIO object as the data argument for download_button
         st.download_button("Download File", excel_data, file_name="DiplomaResult.xlsx", mime="text/csv")
-expect Exception:
+except Exception:
     st.error("PLEASE CHECK FILE FIORMAT!!!")

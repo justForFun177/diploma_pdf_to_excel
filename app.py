@@ -146,21 +146,24 @@ class DiplomaParser:
 from io import BytesIO
 
 pdf = st.file_uploader("UPLOAD A FILE")
-if pdf:
-    dp = DiplomaParser()
-    dp.do_parsing(pdf, "DiplomaResult.xlsx")
-
-    time.sleep(5)
-    data = pd.ExcelFile("DiplomaResult.xlsx")
-
-    # Save the Excel file to a BytesIO object
-    excel_data = BytesIO()
-    with pd.ExcelWriter(excel_data, engine='xlsxwriter') as writer:
-        for sheet_name in data.sheet_names:
-            df = data.parse(sheet_name)
-            df.to_excel(writer, sheet_name=sheet_name, index=False)
-
-    excel_data.seek(0)
-
-    # Use BytesIO object as the data argument for download_button
-    st.download_button("Download File", excel_data, file_name="DiplomaResult.xlsx", mime="text/csv")
+try:
+    if pdf:
+        dp = DiplomaParser()
+        dp.do_parsing(pdf, "DiplomaResult.xlsx")
+    
+        time.sleep(5)
+        data = pd.ExcelFile("DiplomaResult.xlsx")
+    
+        # Save the Excel file to a BytesIO object
+        excel_data = BytesIO()
+        with pd.ExcelWriter(excel_data, engine='xlsxwriter') as writer:
+            for sheet_name in data.sheet_names:
+                df = data.parse(sheet_name)
+                df.to_excel(writer, sheet_name=sheet_name, index=False)
+    
+        excel_data.seek(0)
+    
+        # Use BytesIO object as the data argument for download_button
+        st.download_button("Download File", excel_data, file_name="DiplomaResult.xlsx", mime="text/csv")
+expect Exception:
+    st.error("PLEASE CHECK FILE FIORMAT!!!")

@@ -159,6 +159,7 @@ try:
         with pd.ExcelWriter(excel_data, engine='xlsxwriter') as writer:
             for sheet_name in data.sheet_names:
                 df = data.parse(sheet_name)
+                df = df.rename(columns={'Unnamed: 0': '', 'Unnamed: 1': '', 'Unnamed: 2': '', 'Unnamed: 3': '', 'Unnamed: 4': '', 'Unnamed: 5': '', 'Unnamed: 6': '', 'Unnamed: 7': '', 'Unnamed: 8': '', 'Unnamed: 9': '', 'Unnamed: 10': '', 'Unnamed: 11': '', 'Unnamed: 12': '', 'Unnamed: 13': '', 'Unnamed: 14': '', 'Unnamed: 15': '', 'Unnamed: 16': '', 'Unnamed: 17': '', 'Unnamed: 18': '', 'Unnamed: 19': '', 'Unnamed: 20': '', 'Unnamed: 21': ''})
                 df.to_excel(writer, sheet_name=sheet_name, index=False)
     
         excel_data.seek(0)
